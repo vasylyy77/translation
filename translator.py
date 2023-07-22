@@ -1,29 +1,23 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'un.ui'
+# Form generated from reading UI file 'un.ui'
 ##
-## Created by: Qt User Interface Compiler version 6.5.1
+# Created by: Qt User Interface Compiler version 6.5.1
 ##
-## WARNING! All changes made in this file will be lost when recompiling UI file!
+# WARNING! All changes made in this file will be lost when recompiling UI file!
 ################################################################################
 from enchant.checker import SpellChecker
 import enchant
-d = enchant.Dict("en_US")
-
 from googletrans import Translator
 from PySide6.QtTextToSpeech import QTextToSpeech
-from PySide6.QtCore import (QCoreApplication, QDate, QDateTime, QLocale,
-    QMetaObject, QObject, QPoint, QRect,
-    QSize, QTime, QUrl, Qt)
-from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
-    QFont, QFontDatabase, QGradient, QIcon,QTextCharFormat, QTextCursor,
-    QImage, QKeySequence, QLinearGradient, QPainter,
-    QPalette, QPixmap, QRadialGradient, QTransform)
+from PySide6.QtCore import (QCoreApplication, QDate, QDateTime, QLocale, QMetaObject, QObject, QPoint, QRect, QSize, QTime, QUrl, Qt)
+from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor, QFont, QFontDatabase, QGradient, QIcon, QTextCharFormat, QTextCursor, QImage, QKeySequence, QLinearGradient, QPainter,
+     QPalette, QPixmap, QRadialGradient, QTransform)
 from PySide6.QtWidgets import (QApplication, QFrame, QHBoxLayout, QLabel,
-    QMainWindow, QMenuBar, QPushButton, QRadioButton,QMessageBox,
-    QSizePolicy, QStatusBar, QTextEdit, QVBoxLayout,
-    QWidget)
+     QMainWindow, QMenuBar, QPushButton, QRadioButton,QMessageBox,
+     QSizePolicy, QStatusBar, QTextEdit, QVBoxLayout,
+     QWidget)
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
@@ -31,7 +25,6 @@ class Ui_MainWindow(object):
             MainWindow.setObjectName(u"MainWindow")
         MainWindow.resize(807, 625)
         self.setWindowIcon(QIcon("logo.png"))
-
         self.is_speaking = False
         self.is_speaking_2 = False
 
@@ -92,20 +85,11 @@ class Ui_MainWindow(object):
         self.horizontalLayout_2.setObjectName(u"horizontalLayout_2")
         self.textEdit = QTextEdit(self.maimFrame)
         self.textEdit.setObjectName(u"textEdit")
-
-
-
-
         self.horizontalLayout_2.addWidget(self.textEdit)
-
         self.textEdit_2 = QTextEdit(self.maimFrame)
         self.textEdit_2.setObjectName(u"textEdit_2")
-
         self.horizontalLayout_2.addWidget(self.textEdit_2)
-
-
         self.verticalLayout.addLayout(self.horizontalLayout_2)
-
         self.horizontalLayout_3 = QHBoxLayout()
         self.horizontalLayout_3.setObjectName(u"horizontalLayout_3")
         self.pushButton_2 = QPushButton(self.maimFrame)
@@ -120,27 +104,16 @@ class Ui_MainWindow(object):
         # Set the size of the icon
         icon_size = QSize(32, 32)  # Adjust the size as needed
         self.pushButton_2.setIconSize(icon_size)
-        #self.pushButton_2.clicked.connect(self.speak_text)
-
-
         self.horizontalLayout_3.addWidget(self.pushButton_2)
-
         self.pushButton_3 = QPushButton(self.maimFrame)
         self.pushButton_3.setObjectName(u"pushButton_3")
         self.pushButton_3.setFont(font1)
-
         self.update_button_icon_2()
-
-
         icon_size = QSize(32, 32)  # Adjust the size as needed
         self.pushButton_3.setIconSize(icon_size)
         self.pushButton_3.clicked.connect(self.speak_text_2)
-
         self.horizontalLayout_3.addWidget(self.pushButton_3)
-
-
         self.verticalLayout.addLayout(self.horizontalLayout_3)
-
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QMenuBar(MainWindow)
         self.menubar.setObjectName(u"menubar")
@@ -149,20 +122,11 @@ class Ui_MainWindow(object):
         self.statusbar = QStatusBar(MainWindow)
         self.statusbar.setObjectName(u"statusbar")
         MainWindow.setStatusBar(self.statusbar)
-
         self.retranslateUi(MainWindow)
-
         QMetaObject.connectSlotsByName(MainWindow)
-
-        # Create a QTextToSpeech object
         self.text_to_speech = QTextToSpeech()
         locale = QLocale("en_US")
         self.text_to_speech.setLocale(locale)
-
-    # setupUi
-
-
-
 
     def retranslateUi(self, MainWindow):
         MainWindow.setWindowTitle(QCoreApplication.translate("MainWindow", u"Translator", None))
@@ -173,26 +137,22 @@ class Ui_MainWindow(object):
         self.pushButton_2.setText(QCoreApplication.translate("MainWindow", u"\u041e\u0437\u0432\u0443\u0447\u0438\u0442\u044c \u0442\u0435\u043a\u0441\u0442", None))
         self.pushButton_3.setText(QCoreApplication.translate("MainWindow", u"\u041e\u0437\u0432\u0443\u0447\u0438\u0442\u044c \u043f\u0435\u0440\u0435\u0432\u043e\u0434", None))
         self.pushButton_4.setText(QCoreApplication.translate("MainWindow", 'Check text',None))
-    # retranslateUi
+
     def check_text(self):
+        d = enchant.Dict("en_US")
         text = self.textEdit.toPlainText()
         chkr = SpellChecker("en")
         chkr.set_text(text)
-
         for err in chkr:
             print(err.word)
             mess = QMessageBox()
-
             mess.information(self.maimFrame, "Spell Check", f"""{err.word} : 
               {d.suggest(err.word)}""")
             mess.setFixedWidth(400)
             mess.setStyleSheet("background-color: rgb(0, 0, 0);")
-            # Set the size as needed
+
+
     def click_tr(self):
-        stop = False
-
-
-
         if(self.radioButton.isChecked()):
             input_text = self.textEdit.toPlainText()
             translator = Translator()
@@ -228,7 +188,6 @@ class Ui_MainWindow(object):
             self.pushButton_2.setIcon(QIcon('volume.svg'))
 
     def speak_text_2(self):
-
         if self.is_speaking_2:
             # Stop the text-to-speech and reset the icon
             self.text_to_speech.stop()
