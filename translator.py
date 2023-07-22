@@ -9,6 +9,7 @@
 ################################################################################
 from enchant.checker import SpellChecker
 import enchant
+
 from googletrans import Translator
 from PySide6.QtTextToSpeech import QTextToSpeech
 from PySide6.QtCore import (QCoreApplication, QDate, QDateTime, QLocale, QMetaObject, QObject, QPoint, QRect, QSize, QTime, QUrl, Qt)
@@ -141,7 +142,7 @@ class Ui_MainWindow(object):
     def check_text(self):
         d = enchant.Dict("en_US")
         text = self.textEdit.toPlainText()
-        chkr = SpellChecker("en")
+        chkr = SpellChecker("en_US")
         chkr.set_text(text)
         for err in chkr:
             print(err.word)
